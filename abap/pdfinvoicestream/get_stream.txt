@@ -1,0 +1,37 @@
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_STREAM.
+DATA:
+
+  lt_keys     TYPE /iwbep/t_mgw_tech_pairs,
+
+  ls_key      TYPE /iwbep/s_mgw_tech_pair,
+
+  lv_customer TYPE s_customer,
+
+  lv_xstring  TYPE xstring,
+
+  ls_stream   TYPE ty_s_media_resource.
+
+  lt_keys = io_tech_request_context->get_keys( ).
+
+  READ TABLE lt_keys WITH KEY name = 'I_CUSTOMER' INTO ls_key.
+
+  lv_customer = ls_key-value.
+
+  CALL FUNCTION 'Z_TEST_PDF_DISPLAY'
+
+    EXPORTING
+
+      i_customer = lv_customer
+
+    IMPORTING
+
+      e_xstring = lv_xstring.
+
+  ls_stream-value = lv_xstring.
+
+  ls_stream-mime_type = 'application/pdf'.
+
+  copy_data_to_ref( EXPORTING is_data = ls_stream
+
+                    CHANGING  cr_data = er_stream ).
+  endmethod.
