@@ -1,0 +1,21 @@
+  method DEFINE.
+      DATA:
+
+    lo_entity   TYPE REF TO /iwbep/if_mgw_odata_entity_typ,
+
+    lo_property TYPE REF TO /iwbep/if_mgw_odata_property.
+
+  super->define( ).
+
+  lo_entity = model->get_entity_type( iv_entity_name = 'pdf' ).
+
+  IF lo_entity IS BOUND.
+
+    lo_property = lo_entity->get_property( iv_property_name = 'MimeType' ).
+
+    lo_property->set_as_content_type( ).
+
+  ENDIF.
+
+
+  endmethod.
