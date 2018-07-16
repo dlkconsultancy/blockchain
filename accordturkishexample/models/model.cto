@@ -1,0 +1,24 @@
+namespace org.accordproject.satissozlesmesi
+
+import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
+
+transaction confirmRequest extends Request {
+}
+
+transaction confirmout extends Response {
+  o String output
+}
+
+/**
+ * The model for the contract
+ */
+asset satissozlesmesi extends AccordContract {
+
+  /* Satış Sözleşmesi Yapısı */
+  o String alici
+  o String satici
+  o String progname
+  o String usernum
+  o String mahkemebolge
+}

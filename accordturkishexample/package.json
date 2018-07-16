@@ -1,0 +1,10 @@
+{
+    "name": "turkishexample",
+    "version": "0.0.0",
+    "description": "Satış Sözleşmesi",
+    "cicero": {
+      "version": "^0.4.5",
+      "language": "ergo",
+      "template": "contract"
+    }
+  }
